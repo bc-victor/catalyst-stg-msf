@@ -76,6 +76,7 @@ export function B2BProductionScripts({
       <Script
         data-channelid={channelId}
         data-storehash={storeHash}
+        data-environment="staging"
         src="https://cdn.bundleb2b.net/b2b/staging/storefront/headless.js"
         type="module"
       />
