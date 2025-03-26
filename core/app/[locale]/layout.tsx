@@ -18,7 +18,7 @@ import { revalidate } from '~/client/revalidate-target';
 import { routing } from '~/i18n/routing';
 
 import { getToastNotification } from '../../lib/server-toast';
-import { CookieNotifications, Notifications } from '../notifications';
+import { CookieNotifications } from '../notifications';
 import { Providers } from '../providers';
 
 const RootLayoutMetadataQuery = graphql(`
@@ -59,6 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
     other: {
       platform: 'bigcommerce.catalyst',
       build_sha: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? '',
+      store_hash: process.env.BIGCOMMERCE_STORE_HASH ?? '',
     },
   };
 }
@@ -97,7 +98,6 @@ export default async function RootLayout({ params, children }: Props) {
   return (
     <html className={clsx(fonts.map((f) => f.variable))} lang={locale}>
       <body>
-        <Notifications />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NuqsAdapter>
             <Providers>
