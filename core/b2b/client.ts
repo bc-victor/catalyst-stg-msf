@@ -38,8 +38,12 @@ export async function loginWithB2B({ customerId, customerAccessToken }: LoginWit
       token: z.array(z.string()),
     }),
   });
+  console.log(response.status)
+  console.log(response.statusText)
+  const res = await response.json();
+  console.log(res)
 
-  const [token] = B2BTokenResponseSchema.parse(await response.json()).data.token;
+  const [token] = B2BTokenResponseSchema.parse(res).data.token;
 
   if (!token) {
     throw new Error('No token returned from B2B API');
