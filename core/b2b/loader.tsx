@@ -34,7 +34,7 @@ export async function B2BLoader() {
     );
   }
 
-  const environment = STAGING_B2B_CDN_ORIGIN === 'true' ? 'staging' : 'production';
+  const environment = (process.env.B2B_ENVIRONMENT as 'staging' | 'production' | 'integration') ?? 'production';
 
   return (
     <ScriptProduction
